@@ -14,7 +14,7 @@ export default function Home() {
             sx={{
               mt: { xs: '10px', md: '60px' },
               textAlign: 'center',
-              color: '#000',
+              color: '#3D0C11',
               fontSize:{ xs: '30px', md: '56px' },
               fontWeight: { xs: 500, md: 700 },
               lineHeight: '140%',
