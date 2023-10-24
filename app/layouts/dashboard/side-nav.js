@@ -52,12 +52,12 @@ export const SideNav = (props) => {
               width: 32
             }}
           >
-            <Logo />
+            {/* <Logo /> */}
           </Box>
-          <Box
+          {/* <Box
             sx={{
               alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              backgroundColor: '#fcf6eb',
               borderRadius: 1,
               cursor: 'pointer',
               display: 'flex',
@@ -86,7 +86,7 @@ export const SideNav = (props) => {
             >
               <ChevronUpDownIcon />
             </SvgIcon>
-          </Box>
+          </Box> */}
         </Box>
         <Divider sx={{ borderColor: 'neutral.700' }} />
         <Box
@@ -103,7 +103,7 @@ export const SideNav = (props) => {
             sx={{
               listStyle: 'none',
               p: 0,
-              m: 0
+              m: 0,
             }}
           >
             {items.map((item) => {
@@ -123,57 +123,6 @@ export const SideNav = (props) => {
             })}
           </Stack>
         </Box>
-        <Divider sx={{ borderColor: 'neutral.700' }} />
-        <Box
-          sx={{
-            px: 2,
-            py: 3
-          }}
-        >
-          <Typography
-            color="neutral.100"
-            variant="subtitle2"
-          >
-            Need more features?
-          </Typography>
-          <Typography
-            color="neutral.500"
-            variant="body2"
-          >
-            Check out our Pro solution template.
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              mt: 2,
-              mx: 'auto',
-              width: '160px',
-              '& img': {
-                width: '100%'
-              }
-            }}
-          >
-            <img
-              alt="Go to pro"
-              src="/assets/devias-kit-pro.png"
-            />
-          </Box>
-          <Button
-            component="a"
-            endIcon={(
-              <SvgIcon fontSize="small">
-                <ArrowTopRightOnSquareIcon />
-              </SvgIcon>
-            )}
-            fullWidth
-            href="https://material-kit-pro-react.devias.io/"
-            sx={{ mt: 2 }}
-            target="_blank"
-            variant="contained"
-          >
-            Pro Live Preview
-          </Button>
-        </Box>
       </Box>
     </Scrollbar>
   );
@@ -185,8 +134,8 @@ export const SideNav = (props) => {
         open
         PaperProps={{
           sx: {
-            backgroundColor: 'neutral.800',
-            color: 'common.white',
+            backgroundColor: '#3D0C11',
+            color: '#fcf6eb',
             width: 280
           }
         }}
@@ -204,8 +153,8 @@ export const SideNav = (props) => {
       open={open}
       PaperProps={{
         sx: {
-          backgroundColor: 'neutral.800',
-          color: 'common.white',
+          backgroundColor: '#3D0C11',
+          color: '#fcf6eb',
           width: 280
         }
       }}

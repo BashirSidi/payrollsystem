@@ -10,8 +10,8 @@ import { SvgIcon } from '@mui/material';
 
 export const items = [
   {
-    title: 'Overview',
-    path: '/',
+    title: 'Admin',
+    path: '/admin',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -19,8 +19,8 @@ export const items = [
     )
   },
   {
-    title: 'Customers',
-    path: '/customers',
+    title: 'Employee',
+    path: '/employee',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -28,8 +28,8 @@ export const items = [
     )
   },
   {
-    title: 'Companies',
-    path: '/companies',
+    title: 'Benifits',
+    path: '/benefits',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -37,8 +37,8 @@ export const items = [
     )
   },
   {
-    title: 'Account',
-    path: '/account',
+    title: 'Recruitement',
+    path: '/recruitment',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -46,8 +46,8 @@ export const items = [
     )
   },
   {
-    title: 'Settings',
-    path: '/settings',
+    title: 'Maintenance',
+    path: '/maintenance',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />
@@ -55,8 +55,8 @@ export const items = [
     )
   },
   {
-    title: 'Login',
-    path: '/auth/login',
+    title: 'Claim',
+    path: '/claim',
     icon: (
       <SvgIcon fontSize="small">
         <LockClosedIcon />
