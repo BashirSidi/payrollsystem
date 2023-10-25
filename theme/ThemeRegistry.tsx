@@ -32,6 +32,7 @@ const components = createComponents({ palette });
 
 
 const themeOptions: ThemeOptions = {
+  //@ts-ignore
   components,
   breakpoints: {
     values: {
@@ -59,6 +60,7 @@ const themeOptions: ThemeOptions = {
     error,
     info,
     mode: 'light',
+    //@ts-ignore
     neutral,
     primary: indigo,
     success,
