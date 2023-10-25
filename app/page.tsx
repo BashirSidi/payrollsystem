@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import NextLink from 'next/link';
+import { toast } from "react-toastify";
 import Head from 'next/head';
 import {
   Container,
@@ -20,10 +21,12 @@ import {
 } from '@mui/material';
 import {Layout as AuthLayout} from '@/app/layouts/auth/layout'
 import { useState } from 'react';
+import Loader from './components/Loader';
 
 
 function Home() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -43,17 +46,22 @@ function Home() {
         .required('Password is required')
     }),
     onSubmit: async (values, helpers) => {
-      try {
-        console.log('submitted', values)
-        // router.push('/');
-      } catch (err) {
-        console.error('Login failed.')
+      if (values?.email === 'test@test.com' && values?.password === 'test') {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          router.push('/admin');
+        }, 2000);
+      } else {
+        toast.error('Invalid email or password')
       }
     }
   });
   
   return (
-      <AuthLayout>
+      <>
+        {loading ? <Loader /> : <>
+        <AuthLayout>
        <Head>
         <title>
           Login
@@ -155,6 +163,8 @@ function Home() {
             <Box className="wave"></Box>
           </Box>
       </AuthLayout>
+        </>}
+      </>
   )
 }
 

@@ -66,3 +66,44 @@ a {
     transform: translate3d(0,5px,0);
   }
 }
+
+/* loader */
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #3D0C11;
+  box-shadow: 32px 0 #3D0C11, -32px 0 #3D0C11;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: rgba(252, 252, 226, 0.39);
+    box-shadow: 32px 0 #fcf6eb, -32px 0 #3D0C11;
+  }
+  50% {
+    background-color: #3D0C11;
+    box-shadow: 32px 0 #fcf6eb, -32px 0 #fcf6eb;
+  }
+  100% {
+    background-color: rgba(252, 252, 226, 0.39);
+    box-shadow: 32px 0 #3D0C11, -32px 0 #fcf6eb;
+  }
+}
+
+.loader_wrapper {
+  font-family: "Hind Guntur", sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(124, 39, 113, 0.116);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}    
