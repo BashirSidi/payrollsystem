@@ -1,7 +1,9 @@
-import Head from 'next/head';
-import NextLink from 'next/link';
-import ArrowLeftIcon from '@heroicons/react/24/solid/ArrowLeftIcon';
 import { Box, Button, Container, SvgIcon, Typography } from '@mui/material';
+
+import ArrowLeftIcon from '@heroicons/react/24/solid/ArrowLeftIcon';
+import Head from 'next/head';
+import Image from 'next/image';
+import NextLink from 'next/link';
 
 const Page = () => (
   <>
@@ -41,6 +43,15 @@ const Page = () => (
                 maxWidth: '100%',
                 width: 400
               }}
+            />
+            <Image
+              src="/assets/errors/error-404.png"
+              style={{
+                display: 'inline-block',
+                maxWidth: '100%',
+                width: 400
+              }}
+              alt="Error"
             />
           </Box>
           <Typography

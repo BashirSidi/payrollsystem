@@ -1,28 +1,22 @@
 "use client"
-import { AppDispatch } from './redux/store';
-import { useRouter } from 'next/navigation';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
-import NextLink from 'next/link';
-import { toast } from "react-toastify";
-import Head from 'next/head';
-import {
-  Container,
-  Alert,
-  Box,
-  Button,
-  FormHelperText,
-  Link,
-  Stack,
-  Tab,
-  Tabs,
-  TextField,
-  Typography
-} from '@mui/material';
-import {Layout as AuthLayout} from '@/app/layouts/auth/layout'
-import { useState } from 'react';
-import Loader from './components/Loader';
 
+import * as Yup from 'yup';
+
+import {
+Box,
+Button,
+Stack,
+TextField,
+Typography
+} from '@mui/material';
+
+import {Layout as AuthLayout} from '@/app/layouts/auth/layout'
+import Head from 'next/head';
+import Loader from './components/Loader';
+import { toast } from "react-toastify";
+import { useFormik } from 'formik';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 function Home() {
   const router = useRouter();
@@ -45,7 +39,7 @@ function Home() {
         .max(255)
         .required('Password is required')
     }),
-    onSubmit: async (values, helpers) => {
+    onSubmit: async (values) => {
       if (values?.email === 'test@test.com' && values?.password === 'test') {
         setLoading(true);
         setTimeout(() => {
