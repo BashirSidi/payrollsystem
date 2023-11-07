@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/system';
 
-const PrimaryButton = styled(Button)(({ theme }) => ({
+const PrimaryButton = styled(Button)(() => ({
   backgroundColor: '#2C3878',
   py: '14px',
   px: '32px',

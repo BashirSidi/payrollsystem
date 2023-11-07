@@ -12,7 +12,6 @@ import { OverviewTotalCustomers } from '../sections/overview/overview-total-cust
 import { OverviewTotalProfit } from '../sections/overview/overview-total-profit';
 import React from 'react'
 import {data} from './mock';
-import styles from './styles.modules.css';
 
 const Page = () => (
   <DashboardLayout>
