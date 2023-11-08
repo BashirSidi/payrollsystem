@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
+import { Box, Unstable_Grid2 as Grid } from '@mui/material';
+
+import Image from 'next/image';
 import NextLink from 'next/link';
-import { Box, Typography, Unstable_Grid2 as Grid } from '@mui/material';
-import { Logo } from '@/app/components/logo';
+import PropTypes from 'prop-types';
 
 // TODO: Change subtitle text
 
@@ -70,10 +71,12 @@ export const Layout = (props) => {
           }}
         >
           <Box sx={{ p: 3, display: { xs: 'none', md: 'flex' } }}>
-            <img
-              alt=""
-              src="/images/auth-illustration.svg"
-            />
+          <Image
+            src="/images/auth-illustration.svg"
+            width={500}
+            height={500}
+            alt="Picture of the author"
+          />
           </Box>
         </Grid>
       </Grid>
