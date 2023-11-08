@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Bashir Salisu Sidi",
+      "email": "sidi@mail.com",
+      "password": "pass123"
+    },
+    {
+      "id": 2,
+      "name": "Bashir Ibrahim",
+      "email": "bashhau@gmail.com",
+      "password": "pass123"
+    }
+  ],
+  "employees": [],
+  "mdas": [
+    {"id": 1, "name": "OFFICE OF THE CHIEF OF STAFF"},
+    {"id": 2, "name": "MINISTRY OF INFORMATION, CULT. & TOURISM"},
+    {"id": 3, "name": "OFFICE OF THE HEAD OF CIVIL SERVICE"},
+    {"id": 4, "name": "BAUCHI STATE WATER BOARD"}
+  ]
+}
