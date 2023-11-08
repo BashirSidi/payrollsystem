@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "serve": "json-server --watch db.json --port 3004"
   },
   "dependencies": {
     "@emotion/cache": "11.10.5",
@@ -32,6 +33,7 @@
     "eslint-config-next": "13.5.1",
     "eslint-plugin-unused-imports": "^3.0.0",
     "formik": "^2.4.5",
+    "json-server": "^0.17.4",
     "next": "13.5.1",
     "nprogress": "0.2.0",
     "react": "18.2.0",
