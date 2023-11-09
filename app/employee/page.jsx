@@ -1,35 +1,25 @@
 'use client'
-import React from 'react'
-import { format } from 'date-fns';
+import React, { useEffect } from 'react'
 import { Layout as  DashboardLayout} from '../layouts/dashboard/layout'
 import {
   Box,
-  Button,
   Card,
-  CardActions,
   CardHeader,
-  Divider,
-  Container,
-  SvgIcon,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography
+  Container
 } from '@mui/material';
-import { data } from '../admin/mock';
+import { useDispatch, useSelector } from "react-redux";
 import { Scrollbar } from '../components/scrollbar'; 
 import { SeverityPill } from '../components/severity-pill';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { DataGrid } from '@mui/x-data-grid';
 import Head from 'next/head'
+import Loader from '../components/Loader'
+import { getAllEmployees } from '../redux/features/employeeSlice/thunk';
 
 const statusMap = {
   pending: 'warning',
   active: 'success',
-  refunded: 'error'
 };
 
 const columns = [
@@ -65,7 +55,7 @@ const columns = [
     headerName: 'Action',
     sortable: false,
     width: 150,
-    renderCell: (params) =>
+    renderCell: () =>
       <Box>
         <DeleteOutlinedIcon />
         <EditOutlinedIcon />
@@ -73,20 +63,21 @@ const columns = [
   },
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', supervisor: 'test', subUnit: 'test', employmentStatus: 'pending', jobTitle: 'Test job', middleName: 'Test', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', supervisor: 'test', subUnit: 'test', employmentStatus: 'active', jobTitle: 'Test job', middleName: 'Test', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', supervisor: 'test', subUnit: 'test', employmentStatus: 'pending', jobTitle: 'Test job', middleName: 'Test', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', supervisor: 'test', subUnit: 'test', employmentStatus: 'active', jobTitle: 'Test job', middleName: 'Test', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', supervisor: 'test', subUnit: 'test', employmentStatus: 'pending', jobTitle: 'Test job', middleName: 'Test', firstName: 'Daenerys', age: 6 },
-  { id: 6, lastName: 'Melisandre', supervisor: 'test', subUnit: 'test', employmentStatus: 'active', jobTitle: 'Test job', middleName: 'Test', firstName: 'Test', age: 150 },
-  { id: 7, lastName: 'Clifford', supervisor: 'test', subUnit: 'test', employmentStatus: 'pending', jobTitle: 'Test job', middleName: 'Test', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', supervisor: 'test', subUnit: 'test', employmentStatus: 'active', jobTitle: 'Test job', middleName: 'Test', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', supervisor: 'test', subUnit: 'test', employmentStatus: 'pending', jobTitle: 'Test job', middleName: 'Test', firstName: 'Harvey', age: 65 },
-];
-
 
 const Page = () => {
+  const dispatch = useDispatch();
+  const employee = useSelector((state) => state.employee);
+  useEffect(() => {
+    dispatch(
+      getAllEmployees({})
+    )
+  }, [employee.employee])
+
+  if(employee.employeeStatus === "loading"){
+    return (
+      <Loader />
+    )
+  }
   return (
     <>
       <DashboardLayout>
@@ -100,10 +91,11 @@ const Page = () => {
           <Container maxWidth="xl">
             <Card>
               <CardHeader title="Employees" />
-                <Box sx={{ minWidth: 800 }}>
+                <Box>
                 <Scrollbar sx={{ flexGrow: 1 }}>
+                {employee?.employee?.data && 
                 <DataGrid
-                  rows={rows}
+                  rows={employee?.employee?.data}
                   columns={columns}
                   initialState={{
                     pagination: {
@@ -112,7 +104,7 @@ const Page = () => {
                   }}
                   pageSizeOptions={[5, 10]}
                   checkboxSelection
-                />
+                />}
                 </Scrollbar>
                 </Box>
             </Card>

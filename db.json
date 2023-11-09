@@ -13,11 +13,106 @@
       "password": "pass123"
     }
   ],
-  "employees": [],
-  "mdas": [
-    {"id": 1, "name": "OFFICE OF THE CHIEF OF STAFF"},
-    {"id": 2, "name": "MINISTRY OF INFORMATION, CULT. & TOURISM"},
-    {"id": 3, "name": "OFFICE OF THE HEAD OF CIVIL SERVICE"},
-    {"id": 4, "name": "BAUCHI STATE WATER BOARD"}
+  "mdas": [],
+  "employees": [
+    { 
+      "id": 1, 
+      "lastName": "Snow", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "pending", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Jon", 
+      "age": 35 
+    },
+    { 
+      "id": 2, 
+      "lastName": "Lannister", 
+      "supervisor": "test", 
+      "subUnit": "test",
+      "employmentStatus": "active", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Cersei", 
+      "age": 42 
+    },
+    { 
+      "id": 3, 
+      "lastName": "Lannister", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "pending", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Jaime", 
+      "age": 45 
+    },
+    { 
+      "id": 4, 
+      "lastName": "Stark", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "active", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Arya", 
+      "age": 16 
+    },
+    { 
+      "id": 5, 
+      "lastName": "Targaryen", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "pending", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Daenerys", 
+      "age": 6 
+    },
+    { 
+      "id": 6, 
+      "lastName": "Melisandre", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "active", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Test", 
+      "age": 150 
+    },
+    { 
+      "id": 7, 
+      "lastName": "Clifford", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "pending", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Ferrara", 
+      "age": 44 
+    },
+    { 
+      "id": 8, 
+      "lastName": "Frances", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "active", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Rossini", 
+      "age": 36 
+    },
+    { 
+      "id": 9, 
+      "lastName": "Roxie", 
+      "supervisor": "test", 
+      "subUnit": "test", 
+      "employmentStatus": "pending", 
+      "jobTitle": "Test job", 
+      "middleName": "Test", 
+      "firstName": "Harvey", 
+      "age": 65 
+    }
   ]
 }

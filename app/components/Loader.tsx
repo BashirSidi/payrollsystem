@@ -1,12 +1,9 @@
 import React from 'react'
 
-type Props = {message?: string}
-
-const Loader = (props: Props) => {
-  const {message} = props;
+const Loader = () => {
   return (
     <div className='loader_wrapper'>
-      <span className="loader">{message || 'Loading...'}</span>
+      <span className="loader"></span>
     </div>
   )
 }
