@@ -13,7 +13,15 @@
       "password": "pass123"
     }
   ],
-  "mdas": [],
+  "mdas": [
+    {"id": "1", "title": "OFFICE OF THE CHIEF OF STAF"},
+    {"id": "2", "title": "MINISTRY OF INFORMATION, CULT. & TOURISM"},
+    {"id": "3", "title": "OFFICE OF THE HEAD OF CIVIL SERVICE"},
+    {"id": "4", "title": "BAUCHI STATE WATER BOARD"},
+    {"id": "5", "title": "BAUCHI STATE PENSION BOARD"},
+    {"id": "6", "title": "MUSLIMS PILGRIMS WELFARE BOARD"},
+    {"id": "6", "title": "CHRISTIAN PILGRIMS WELFARE BOARD"}
+  ],
   "employees": [
     { 
       "id": 1, 

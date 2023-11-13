@@ -16,42 +16,16 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Head from 'next/head'
 import Loader from '../components/Loader'
 import { Scrollbar } from '../components/scrollbar';
-import { SeverityPill } from '../components/severity-pill';
-import { getAllEmployees } from '../redux/features/employeeSlice/thunk';
-
-const statusMap = {
-  pending: 'warning',
-  active: 'success',
-};
+import { getAllMDAs } from '../redux/features/mdaSlice/thunk';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   {
-    field: 'firstAndMiddleName',
-    headerName: 'First(& Middle) Name',
-    sortable: false,
-    width: 200,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.middleName || ''}`,
+    field: 'title',
+    headerName: 'Title',
+    sortable: true,
+    width: 600,
   },
-  { field: 'lastName', headerName: 'Last Name', width: 160 },
-  { field: 'jobTitle', headerName: 'Job Title', width: 130 },
-  { 
-    field: 'employmentStatus', 
-    headerName: 'Status', 
-    width: 130,
-    sortable: false,
-    disableClickEventBubbling: true,
-    renderCell: (params) => {
-      return (
-        <SeverityPill color={statusMap[params.row.employmentStatus]}>
-          {params.row.employmentStatus}
-        </SeverityPill>
-      );
-   }
-  },
-  { field: 'subUnit', headerName: 'Sub Unit', width: 130,},
-  { field: 'supervisor', headerName: 'Supervisor', width: 130,},
   {
     field: 'action',
     headerName: 'Action',
@@ -68,14 +42,15 @@ const columns = [
 
 const Page = () => {
   const dispatch = useDispatch();
-  const employee = useSelector((state) => state.employee);
+  const mda = useSelector((state) => state.mda);
+
   useEffect(() => {
     dispatch(
-      getAllEmployees({})
+        getAllMDAs({})
     )
   }, [])
 
-  if(employee.employeeStatus === "loading"){
+  if(mda.status === "loading"){
     return (
       <Loader />
     )
@@ -84,7 +59,7 @@ const Page = () => {
     <>
       <DashboardLayout>
         <Head>
-          <title>Employee</title>
+          <title>MDAs</title>
         </Head>
         <Box
           component="main"
@@ -92,12 +67,12 @@ const Page = () => {
         >
           <Container maxWidth="xl">
             <Card>
-              <CardHeader title="Employees" />
+              <CardHeader title="Bauchi State MDAs" />
                 <Box>
                 <Scrollbar sx={{ flexGrow: 1 }}>
-                {employee?.employee?.data && 
+                {mda?.mda?.data && 
                 <DataGrid
-                  rows={employee?.employee?.data}
+                  rows={mda?.mda?.data}
                   columns={columns}
                   initialState={{
                     pagination: {
