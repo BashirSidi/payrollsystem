@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "serve": "json-server --watch db.json --routes routes.json --port 3004",
+    "serve": "json-server --watch db.json --routes routes.json --port 8004",
     "run-all": "yarn run dev & yarn run serve"
   },
   "dependencies": {
