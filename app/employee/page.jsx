@@ -18,6 +18,7 @@ import Loader from '../components/Loader'
 import { Scrollbar } from '../components/scrollbar';
 import { SeverityPill } from '../components/severity-pill';
 import { getAllEmployees } from '../redux/features/employeeSlice/thunk';
+import EmployeeModalForm from './modal/EmployeeForm';
 
 const statusMap = {
   pending: 'warning',
@@ -67,8 +68,10 @@ const columns = [
 
 
 const Page = () => {
+  const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const employee = useSelector((state) => state.employee);
+  
   useEffect(() => {
     dispatch(
       getAllEmployees({})
@@ -82,6 +85,10 @@ const Page = () => {
   }
   return (
     <>
+      <EmployeeModalForm
+         open={open}
+         onClose={() => setOpen(false)}
+      />
       <DashboardLayout>
         <Head>
           <title>Employee</title>
@@ -91,6 +98,7 @@ const Page = () => {
           sx={{flexGrow: 1, py: 5}}
         >
           <Container maxWidth="xl">
+            <Box onClick={() => setOpen(true)}>Add</Box>
             <Card>
               <CardHeader title="Employees" />
                 <Box>
