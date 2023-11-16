@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { 
   Box, 
   Button, 
@@ -11,7 +11,6 @@ import {
   Typography 
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import ImageUpload from '@/app/components/ImageUpload'
 
 
 const style = {
