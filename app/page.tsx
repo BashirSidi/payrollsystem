@@ -152,10 +152,10 @@ function Home() {
           </Box>
         </Box>
       </Box>
-          <Box sx={{display: { xs: 'none', md: 'flex' } }} className="ocean">
-            <Box className="wave"></Box>
-            <Box className="wave"></Box>
-          </Box>
+      <Box sx={{display: { xs: 'none', md: 'flex' } }} className="ocean">
+        <Box className="wave"></Box>
+        <Box className="wave"></Box>
+      </Box>
       </AuthLayout>
         </>}
       </>

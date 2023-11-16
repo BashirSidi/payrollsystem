@@ -2,6 +2,7 @@
 
 import {
   Box,
+  Button,
   Card,
   CardHeader,
   Container
@@ -98,7 +99,19 @@ const Page = () => {
           sx={{flexGrow: 1, py: 5}}
         >
           <Container maxWidth="xl">
-            <Box onClick={() => setOpen(true)}>Add</Box>
+            <Button
+              variant="contained"
+              onClick={() => setOpen(true)}
+              sx={{ 
+                mb: 2, 
+                bgcolor: '#3D0C11',
+                '&:hover': {
+                  backgroundColor: '#3D0C11',
+                },
+              }}
+            >
+              Add Employee
+            </Button>
             <Card>
               <CardHeader title="Employees" />
                 <Box>
