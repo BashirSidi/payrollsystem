@@ -52,7 +52,7 @@ export const SideNav = (props) => {
           {/* <Box
             sx={{
               alignItems: 'center',
-              backgroundColor: '#fcf6eb',
+              backgroundColor: '#F5F5DC',
               borderRadius: 1,
               cursor: 'pointer',
               display: 'flex',
@@ -129,8 +129,8 @@ export const SideNav = (props) => {
         open
         PaperProps={{
           sx: {
-            backgroundColor: '#3D0C11',
-            color: '#fcf6eb',
+            backgroundColor: '#004225',
+            color: '#F5F5DC',
             width: 280
           }
         }}
@@ -148,8 +148,8 @@ export const SideNav = (props) => {
       open={open}
       PaperProps={{
         sx: {
-          backgroundColor: '#3D0C11',
-          color: '#fcf6eb',
+          backgroundColor: '#004225',
+          color: '#F5F5DC',
           width: 280
         }
       }}

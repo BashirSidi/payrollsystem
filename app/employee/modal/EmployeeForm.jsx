@@ -18,9 +18,9 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
+  width: '80%',
   bgcolor: 'background.paper',
-  border: '2px solid #3D0C11',
+  border: '2px solid #004225',
   borderRadius: '10px',
   boxShadow: 24,
   p: 4,
@@ -110,9 +110,9 @@ const EmployeeForm = (props) => {
                 sx={{ 
                   mt: 1, 
                   mb: 2, 
-                  bgcolor: '#3D0C11',
+                  bgcolor: '#004225',
                   '&:hover': {
-                    backgroundColor: '#3D0C11',
+                    backgroundColor: '#004225',
                   },
                 }}
               >

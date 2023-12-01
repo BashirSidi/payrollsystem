@@ -63,7 +63,7 @@ function Home() {
       </Head>
       <Box
         sx={{
-          background: '#fcf6eb',
+          background: '#F5F5DC',
           height: '100vh',
           flex: '1 1 auto',
           alignItems: 'center',
@@ -74,7 +74,7 @@ function Home() {
         <Box
           sx={{
             maxWidth: 550,
-            background: '#fcf6eb',
+            background: '#F5F5DC',
             px: 3,
             py: '20px',
             marginTop: '-150px',
@@ -132,13 +132,13 @@ function Home() {
                   size="large"
                   sx={{
                     mt: 3,
-                    background: '#3D0C11',
-                    color: '#fcf6eb',
+                    background: '#004225',
+                    color: '#F5F5DC',
                     '&:hover': {
-                      backgroundColor: '#3D0C11',
+                      backgroundColor: '#004225',
                       border: "none",
                       boxShadow: "none",
-                      color: '#fcf6eb'
+                      color: '#F5F5DC'
                     },
                     border: "none",
                     boxShadow: "none"

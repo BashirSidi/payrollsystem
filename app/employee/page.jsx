@@ -104,9 +104,9 @@ const Page = () => {
               onClick={() => setOpen(true)}
               sx={{ 
                 mb: 2, 
-                bgcolor: '#3D0C11',
+                bgcolor: '#004225',
                 '&:hover': {
-                  backgroundColor: '#3D0C11',
+                  backgroundColor: '#004225',
                 },
               }}
             >

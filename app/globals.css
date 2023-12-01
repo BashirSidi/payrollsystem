@@ -8,8 +8,8 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #fcf6eb !important;
-  color: #3D0C11 !important;
+  background-color: #F5F5DC !important;
+  color: #004225 !important;
 }
 
 a {
@@ -30,7 +30,7 @@ a {
   position:absolute;
   bottom:0;
   left:0;
-  background: #3D0C11;
+  background: #004225;
 }
 
 .wave {
@@ -72,8 +72,8 @@ a {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #3D0C11;
-  box-shadow: 32px 0 #3D0C11, -32px 0 #3D0C11;
+  background-color: #004225;
+  box-shadow: 32px 0 #004225, -32px 0 #004225;
   position: relative;
   animation: flash 0.5s ease-out infinite alternate;
 }
@@ -81,15 +81,15 @@ a {
 @keyframes flash {
   0% {
     background-color: rgba(252, 252, 226, 0.39);
-    box-shadow: 32px 0 #fcf6eb, -32px 0 #3D0C11;
+    box-shadow: 32px 0 #F5F5DC, -32px 0 #004225;
   }
   50% {
-    background-color: #3D0C11;
-    box-shadow: 32px 0 #fcf6eb, -32px 0 #fcf6eb;
+    background-color: #004225;
+    box-shadow: 32px 0 #F5F5DC, -32px 0 #F5F5DC;
   }
   100% {
     background-color: rgba(252, 252, 226, 0.39);
-    box-shadow: 32px 0 #3D0C11, -32px 0 #fcf6eb;
+    box-shadow: 32px 0 #004225, -32px 0 #F5F5DC;
   }
 }
 
@@ -100,7 +100,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(124, 39, 113, 0.116);
+  background-color: rgba(41, 80, 61, 0.116);
   z-index: 9999;
   display: flex;
   align-items: center;
