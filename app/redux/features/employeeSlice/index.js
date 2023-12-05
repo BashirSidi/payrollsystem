@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllEmployees } from "./thunk";
+import { 
+  addEmployee,
+  fetchEmployees,
+ } from "./thunk";
 
 let initialState = {
   employee: {},
