@@ -83,18 +83,7 @@ const EmployeeForm = (props) => {
         .max(255),
     }),
     onSubmit: async (values) => {
-      try {
-        let email = values.email;
-        let password = values.password;
-        dispatch(signIn({ email, password }))
-          .then((res) => {
-          if(res?.payload && authUser.user){
-            router.push('/admin');
-          }
-        })
-      } catch (error) {
-        toast.error(error.message)
-      }
+      // my code goes here
     }
   });
 
