@@ -8,7 +8,7 @@ import {
   Container
 } from '@mui/material';
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Layout as DashboardLayout } from '../layouts/dashboard/layout'
 import { DataGrid } from '@mui/x-data-grid';
@@ -18,7 +18,7 @@ import Head from 'next/head'
 import Loader from '../components/Loader'
 import { Scrollbar } from '../components/scrollbar';
 import { SeverityPill } from '../components/severity-pill';
-import { getAllEmployees } from '../redux/features/employeeSlice/thunk';
+// import { getAllEmployees } from '../redux/features/employeeSlice/thunk';
 import EmployeeModalForm from './modal/EmployeeForm';
 
 const statusMap = {
@@ -70,13 +70,13 @@ const columns = [
 
 const Page = () => {
   const [open, setOpen] = React.useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const employee = useSelector((state) => state.employee);
   
   useEffect(() => {
-    dispatch(
-      getAllEmployees({})
-    )
+    // dispatch(
+    //   getAllEmployees({})
+    // )
   }, [])
 
   if(employee.employeeStatus === "loading"){

@@ -16,7 +16,6 @@ import Loader from './components/Loader';
 import { toast } from "react-toastify";
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from './redux/features/authSlice/thunk';
 
@@ -46,7 +45,7 @@ function Home() {
         let email = values.email;
         let password = values.password;
         dispatch(signIn({ email, password }))
-        .then((res) => {
+          .then((res) => {
           if(res?.payload && authUser.user){
             router.push('/admin');
           }
