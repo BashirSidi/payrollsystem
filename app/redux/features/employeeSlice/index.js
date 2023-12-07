@@ -5,26 +5,43 @@ import {
  } from "./thunk";
 
 let initialState = {
+  employees: [],
   employee: {},
-  employeeStatus: "",
-  employeeError: null,
+  loading: false,
+  error: null,
 }
 
 export const employeeSlice = createSlice({
   name: "employee",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getAllEmployees.pending, (state) => {
-      state.employeeStatus = "loading";
-    });
-    builder.addCase(getAllEmployees.fulfilled, (state, action) => {
-      state.employeeStatus = "succeeded";
-      state.employee = action.payload;
-    });
-    builder.addCase(getAllEmployees.rejected, (state, action) => {
-      state.employeeStatus = "failed";
-      state.employeeError = action.payload;
-    });
+    builder
+      .addCase(fetchEmployees.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchEmployees.fulfilled, (state, action) => {
+        state.employees = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchEmployees.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+
+    builder
+      .addCase(addEmployee.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addEmployee.fulfilled, (state, action) => {
+        state.employees = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(addEmployee.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   }
 });
 

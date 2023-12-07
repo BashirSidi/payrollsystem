@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import ThemeRegistry from '@/theme/ThemeRegistry'
+import ThemeRegistry from '../theme/ThemeRegistry'
 import { ReduxProvider } from './redux/provider'
 import { ToastContainer } from "react-toastify";
 import 'simplebar-react/dist/simplebar.min.css';
@@ -22,9 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ThemeRegistry>
+      <ThemeRegistry children={undefined}>
         <body className={inter.className}>
-          <ReduxProvider>
+          <ReduxProvider children={undefined}>
             <ToastContainer hideProgressBar />
             {children}
           </ReduxProvider>

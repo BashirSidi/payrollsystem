@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { 
   signUp,
   signIn,
+  logOut,
  } from "./thunk";
 
 const initialState = {
@@ -34,6 +35,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
+
     builder
       .addCase(signIn.pending, (state) => {
         state.loading = true;
@@ -47,6 +49,20 @@ const authSlice = createSlice({
       .addCase(signIn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      });
+
+    builder
+      .addCase(logOut.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.loading = false;
+        state.user = null;
+      })
+      .addCase(logOut.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? 'Logout failed';
       });
   },
 });

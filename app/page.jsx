@@ -10,23 +10,25 @@ TextField,
 Typography
 } from '@mui/material';
 
-import {Layout as AuthLayout} from '@/app/layouts/auth/layout'
+import {Layout as AuthLayout} from './layouts/auth/layout'
 import Head from 'next/head';
 import Loader from './components/Loader';
 import { toast } from "react-toastify";
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from './redux/features/authSlice/thunk';
 
 function Home() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const authUser = useSelector((state) => state.auth)
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
-      submit: null
     },
     validationSchema: Yup.object({
       email: Yup
@@ -40,21 +42,24 @@ function Home() {
         .required('Password is required')
     }),
     onSubmit: async (values) => {
-      if (values?.email === 'test@test.com' && values?.password === 'test') {
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-          router.push('/admin');
-        }, 2000);
-      } else {
-        toast.error('Invalid email or password')
+      try {
+        let email = values.email;
+        let password = values.password;
+        dispatch(signIn({ email, password }))
+        .then((res) => {
+          if(res?.payload && authUser.user){
+            router.push('/admin');
+          }
+        })
+      } catch (error) {
+        toast.error(error.message)
       }
     }
   });
   
   return (
       <>
-        {loading ? <Loader /> : <>
+        {authUser.loading ? <Loader /> : <>
         <AuthLayout>
        <Head>
         <title>
@@ -118,7 +123,7 @@ function Home() {
                     value={formik.values.password}
                   />
                 </Stack>
-                {formik.errors.submit && (
+                {/* {formik.errors.submit && (
                   <Typography
                     color="error"
                     sx={{ mt: 3 }}
@@ -126,7 +131,7 @@ function Home() {
                   >
                     {formik.errors.submit}
                   </Typography>
-                )}
+                )} */}
                 <Button
                   fullWidth
                   size="large"
