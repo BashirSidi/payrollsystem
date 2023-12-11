@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import * as Yup from 'yup';
 import { 
   Box, 
@@ -16,7 +16,13 @@ import {
   InputLabel,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 import { useFormik } from 'formik';
+import {fetchAllLga} from '../../redux/features/dataSlice/thunk';
+// import { toast } from "react-toastify";
 
 
 const style = {
@@ -33,6 +39,15 @@ const style = {
 };
 
 const EmployeeForm = (props) => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
+
+  useEffect(() => {
+    dispatch(fetchAllLga());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  console.log('data all lga list', data.lgaList)
 
   const formik = useFormik({
     initialValues: {
@@ -111,7 +126,11 @@ const EmployeeForm = (props) => {
             <CloseIcon />
           </IconButton>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Box component="form" noValidate>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={formik.handleSubmit}
+            >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
