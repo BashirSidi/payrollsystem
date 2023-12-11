@@ -14,7 +14,6 @@ export const fetchAllLga = createAsyncThunk(
 
     const lgaList = lgaCollection.docs
       .map((doc) => ({id: doc.id, ...doc.data()}));
-    console.log('list from thunk ', lgaList)
     return lgaList;
 });
 

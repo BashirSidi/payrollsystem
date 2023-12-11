@@ -21,7 +21,10 @@ import {
   useSelector,
 } from 'react-redux';
 import { useFormik } from 'formik';
-import {fetchAllLga} from '../../redux/features/dataSlice/thunk';
+import {
+  fetchAllLga,
+  fetchQualifications,
+} from '../../redux/features/dataSlice/thunk';
 // import { toast } from "react-toastify";
 
 
@@ -44,10 +47,10 @@ const EmployeeForm = (props) => {
 
   useEffect(() => {
     dispatch(fetchAllLga());
+    dispatch(fetchQualifications());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log('data all lga list', data.lgaList)
 
   const formik = useFormik({
     initialValues: {
@@ -98,7 +101,7 @@ const EmployeeForm = (props) => {
         .max(255),
     }),
     onSubmit: async (values) => {
-      // my code goes here
+      console.log('on employement form submit ', values)
     }
   });
 
@@ -135,11 +138,15 @@ const EmployeeForm = (props) => {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     name="firstName"
+                    error={!!(formik.touched.firstName && formik.errors.firstName)}
+                    helperText={formik.touched.firstName && formik.errors.firstName}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.firstName}
                     required
                     fullWidth
                     id="firstName"
                     label="First Name"
-                    autoFocus
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -149,6 +156,11 @@ const EmployeeForm = (props) => {
                     id="lastName"
                     label="Last Name"
                     name="lastName"
+                    error={!!(formik.touched.lastName && formik.errors.lastName)}
+                    helperText={formik.touched.lastName && formik.errors.lastName}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.lastName}
                   />
                 </Grid>
               </Grid>
@@ -157,6 +169,11 @@ const EmployeeForm = (props) => {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     name="middleName"
+                    error={!!(formik.touched.middleName && formik.errors.middleName)}
+                    helperText={formik.touched.middleName && formik.errors.middleName}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.middleName}
                     fullWidth
                     id="middleName"
                     label="Middle Name"
@@ -170,6 +187,11 @@ const EmployeeForm = (props) => {
                     id="employeeId"
                     label="Employee ID"
                     name="employeeId"
+                    error={!!(formik.touched.employeeId && formik.errors.employeeId)}
+                    helperText={formik.touched.employeeId && formik.errors.employeeId}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.employeeId}
                   />
                 </Grid>
               </Grid>
@@ -182,10 +204,13 @@ const EmployeeForm = (props) => {
                       labelId="gender"
                       required
                       id="gender"
-                      // value={gender}
                       label="Gender"
                       name="gender"
-                      // onChange={}
+                      error={!!(formik.touched.gender && formik.errors.gender)}
+                      helperText={formik.touched.gender && formik.errors.gender}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.gender}
                     >
                       <MenuItem value='men'>Men</MenuItem>
                       <MenuItem value='female'>Female</MenuItem>
@@ -200,6 +225,11 @@ const EmployeeForm = (props) => {
                     id="nin"
                     label="NIN"
                     name="nin"
+                    error={!!(formik.touched.nin && formik.errors.nin)}
+                    helperText={formik.touched.nin && formik.errors.nin}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.nin}
                   />
                 </Grid>
               </Grid>
@@ -213,30 +243,21 @@ const EmployeeForm = (props) => {
                       required
                       id="lga"
                       name='lga'
-                      // value={lga}
                       label="L.G.A"
-                      // onChange={}
+                      error={!!(formik.touched.lga && formik.errors.lga)}
+                      helperText={formik.touched.lga && formik.errors.lga}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.lga}
                     >
-                      <MenuItem value='Alkaleri'>Alkaleri</MenuItem>
-                      <MenuItem value='Bauchi'>Bauchi</MenuItem>
-                      <MenuItem value='Bogoro'>Bogoro</MenuItem>
-                      <MenuItem value='Damban'>Damban</MenuItem>
-                      <MenuItem value='Dass'>Dass</MenuItem>
-                      <MenuItem value='Darazo'>Darazo</MenuItem>
-                      <MenuItem value='Giade'>Giade</MenuItem>
-                      <MenuItem value='Gamawa'>Gamawa</MenuItem>
-                      <MenuItem value='Ganjuwa'>Ganjuwa</MenuItem>
-                      <MenuItem value='Itas/Gadau'>Itas/Gadau</MenuItem>
-                      <MenuItem value='Jama’are'>Jama’are</MenuItem>
-                      <MenuItem value='Katagum'>Katagum</MenuItem>
-                      <MenuItem value='Kirfi'>Kirfi</MenuItem>
-                      <MenuItem value='Misau'>Misau</MenuItem>
-                      <MenuItem value='Ningi'>Ningi</MenuItem>
-                      <MenuItem value='Shira'>Shira</MenuItem>
-                      <MenuItem value='Tafawa-Balewa'>Tafawa-Balewa</MenuItem>
-                      <MenuItem value='Toro'>Toro</MenuItem>
-                      <MenuItem value='Warji'>Warji</MenuItem>
-                      <MenuItem value='Zaki'>Zaki</MenuItem>
+                      {data.lgaList.map((lga) => (
+                        <MenuItem 
+                          key={lga.id}
+                          value={lga.id}
+                        >
+                          {lga.name}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -247,6 +268,11 @@ const EmployeeForm = (props) => {
                     id="residentialAddress"
                     label="Residential Address"
                     name="residentialAddress"
+                    error={!!(formik.touched.residentialAddress && formik.errors.residentialAddress)}
+                    helperText={formik.touched.residentialAddress && formik.errors.residentialAddress}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.residentialAddress}
                   />
                 </Grid>
               </Grid>
@@ -259,14 +285,22 @@ const EmployeeForm = (props) => {
                       labelId="qualification"
                       required
                       id="qualification"
-                      // value={qualification}
                       label="Qualification"
                       name="qualification"
-                      // onChange={}
+                      error={!!(formik.touched.qualification && formik.errors.qualification)}
+                      helperText={formik.touched.qualification && formik.errors.qualification}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.qualification}
                     >
-                      <MenuItem value='men'>---</MenuItem>
-                      <MenuItem value='female'>---</MenuItem>
-                      <MenuItem value='other'>---</MenuItem>
+                      {data.qualificationList.map((qualification) => (
+                        <MenuItem 
+                          key={qualification.id}
+                          value={qualification.id}
+                        >
+                          {qualification.title}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -277,14 +311,17 @@ const EmployeeForm = (props) => {
                       labelId="mda"
                       required
                       id="mda"
-                      // value={mda}
                       label="M.D.A"
                       name="mda"
-                      // onChange={}
+                      error={!!(formik.touched.mda && formik.errors.mda)}
+                      helperText={formik.touched.mda && formik.errors.mda}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.mda}
                     >
-                      <MenuItem value='men'>---</MenuItem>
-                      <MenuItem value='female'>---</MenuItem>
-                      <MenuItem value='other'>---</MenuItem>
+                      <MenuItem value='mda1'>mda1</MenuItem>
+                      <MenuItem value='mda2'>mda2</MenuItem>
+                      <MenuItem value='mda3'>mda3</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>

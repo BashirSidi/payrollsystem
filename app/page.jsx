@@ -46,7 +46,7 @@ function Home() {
         let password = values.password;
         dispatch(signIn({ email, password }))
           .then((res) => {
-          if(res?.payload && authUser.user){
+          if(res?.payload){
             router.push('/admin');
           }
         })
