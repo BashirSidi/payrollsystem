@@ -25,6 +25,8 @@ import {
   fetchAllLga,
   fetchQualifications,
 } from '../../redux/features/dataSlice/thunk';
+import {fetchAllMda} from '../../redux/features/mdaSlice/thunk';
+import { addEmployee } from '../../redux/features/employeeSlice/thunk';
 // import { toast } from "react-toastify";
 
 
@@ -44,10 +46,12 @@ const style = {
 const EmployeeForm = (props) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
+  const mda = useSelector((state) => state.mda);
 
   useEffect(() => {
     dispatch(fetchAllLga());
     dispatch(fetchQualifications());
+    dispatch(fetchAllMda());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -102,6 +106,7 @@ const EmployeeForm = (props) => {
     }),
     onSubmit: async (values) => {
       console.log('on employement form submit ', values)
+      dispatch(addEmployee(values));
     }
   });
 
@@ -212,7 +217,7 @@ const EmployeeForm = (props) => {
                       onChange={formik.handleChange}
                       value={formik.values.gender}
                     >
-                      <MenuItem value='men'>Men</MenuItem>
+                      <MenuItem value='men'>Male</MenuItem>
                       <MenuItem value='female'>Female</MenuItem>
                       <MenuItem value='other'>Other</MenuItem>
                     </Select>
@@ -319,9 +324,14 @@ const EmployeeForm = (props) => {
                       onChange={formik.handleChange}
                       value={formik.values.mda}
                     >
-                      <MenuItem value='mda1'>mda1</MenuItem>
-                      <MenuItem value='mda2'>mda2</MenuItem>
-                      <MenuItem value='mda3'>mda3</MenuItem>
+                      {mda.mdaList.map((mda) => (
+                        <MenuItem 
+                          key={mda.id}
+                          value={mda.id}
+                        >
+                          {mda.title}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -336,7 +346,6 @@ const EmployeeForm = (props) => {
 
               <Button
                 type="submit"
-                fullWidth
                 variant="contained"
                 sx={{ 
                   mt: 1, 

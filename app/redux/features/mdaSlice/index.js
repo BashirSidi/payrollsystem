@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllMDAs } from "./thunk";
+import { fetchAllMda } from "./thunk";
 
 let initialState = {
+  mdaList: [],
   mda: {},
-  status: "",
-  error: null,
+  mdaLoading: false,
+  mdaError: null,
 }
 
 
@@ -12,18 +13,20 @@ export const mdaSlice = createSlice({
     name: "mda",
     initialState,
     extraReducers: (builder) => {
-      builder.addCase(getAllMDAs.pending, (state) => {
-        state.status = "loading";
+    builder
+      .addCase(fetchAllMda.pending, (state) => {
+        state.mdaLoading = true;
+      })
+      .addCase(fetchAllMda.fulfilled, (state, action) => {
+        state.mdaList = action.payload;
+        state.mdaLoading = false;
+        state.mdaError = null;
+      })
+      .addCase(fetchAllMda.rejected, (state, action) => {
+        state.mdaLoading = false;
+        state.mdaError = action.error.message;
       });
-      builder.addCase(getAllMDAs.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.mda = action.payload;
-      });
-      builder.addCase(getAllMDAs.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      });
-    }
+  }
   });
   
-  export default mdaSlice.reducer;
+export default mdaSlice.reducer;

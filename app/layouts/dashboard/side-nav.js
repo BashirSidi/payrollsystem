@@ -8,6 +8,7 @@ import {
   Stack,
   useMediaQuery
 } from '@mui/material';
+import Image from 'next/image';
 // import { Logo } from 'src/components/logo';
 import { Scrollbar } from '../../components/scrollbar';
 import { items } from './config';
@@ -43,11 +44,17 @@ export const SideNav = (props) => {
             href="/"
             sx={{
               display: 'inline-flex',
-              height: 32,
-              width: 32
+              height: 90,
+              width: 90,
+              marginLeft: '30%',
             }}
           >
-            {/* <Logo /> */}
+            <Image
+              src="/images/logo.png"
+              width={300}
+              height={300}
+              alt="Logo"
+            />
           </Box>
           {/* <Box
             sx={{

@@ -25,7 +25,12 @@ export const addEmployee = createAsyncThunk(
     //get qualification by id
     const qualificationDocRef = doc(firestore, "qualifications", employeeData.qualification);
     const qualificationDocSnap = await getDoc(qualificationDocRef);
-    if(!qualificationDocSnap.exists()) toast.error("Qualification not found!");
+    if (!qualificationDocSnap.exists()) toast.error("Qualification not found!");
+    
+    //get mda by id
+    const mdaDocRef = doc(firestore, "mda", employeeData.mda);
+    const mdaDocSnap = await getDoc(mdaDocRef);
+    if(!mdaDocSnap.exists()) toast.error("M.D.A not found!");
 
 
     const addedEmployee = await docRef.get();
@@ -33,7 +38,8 @@ export const addEmployee = createAsyncThunk(
       id: docRef.id,
       ...addedEmployee.data(),
       lga: lgaDocSnap.data(),
-      qualification: qualificationDocSnap.data()
+      qualification: qualificationDocSnap.data(),
+      mda: mdaDocSnap.data(),
     };
 });
 
@@ -57,11 +63,16 @@ export const fetchEmployees = createAsyncThunk(
       const qualificationDocRef = doc(firestore, "qualifications", employeeData.qualification);
       const qualificationDocSnap = await getDoc(qualificationDocRef);
 
+      //retrieve mda base on id
+      const mdaDocRef = doc(firestore, "mda", employeeData.mda);
+      const mdaDocSnap = await getDoc(mdaDocRef);
+
         employees.push({
           id: doc.id,
           ...doc.data(),
           lga: lgaDocSnap.data(),
-          qualification: qualificationDocSnap.data()
+          qualification: qualificationDocSnap.data(),
+          mda: mdaDocSnap.data()
         });
     }
 

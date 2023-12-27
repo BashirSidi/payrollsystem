@@ -39,4 +39,4 @@ export const fetchQualifications = createAsyncThunk(
     const qaulificationList = qualifications.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }));
     return qaulificationList;
-});
+  });
