@@ -6,6 +6,7 @@ import {
   getDocs,
   doc,
   getDoc,
+  updateDoc,
  } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -22,6 +23,12 @@ export const addEmployee = createAsyncThunk(
     const lgaDocSnap = await getDoc(lgaDocRef);
     if(!lgaDocSnap.exists()) toast.error("Local goverment not found!");
 
+    const currentTotalEmployees = lgaDocSnap.data().totalEmployees || 0;
+    const newTotalEmployees = currentTotalEmployees + 1;
+    await updateDoc(lgaDocRef, {totalEmployees: newTotalEmployees});
+    
+    
+
     //get qualification by id
     const qualificationDocRef = doc(firestore, "qualifications", employeeData.qualification);
     const qualificationDocSnap = await getDoc(qualificationDocRef);
@@ -33,7 +40,8 @@ export const addEmployee = createAsyncThunk(
     if(!mdaDocSnap.exists()) toast.error("M.D.A not found!");
 
 
-    const addedEmployee = await docRef.get();
+    const addedEmployee = await getDoc(docRef);
+    toast.success('Employee created successfully!');
     return { 
       id: docRef.id,
       ...addedEmployee.data(),
@@ -52,8 +60,8 @@ export const fetchEmployees = createAsyncThunk(
 
     const employees = [];
 
-    for(const doc of employeeCollection.docs) {
-      const employeeData = doc.data();
+    for(const docSnapshot of employeeCollection.docs) {
+      const employeeData = docSnapshot.data();
 
       //retrieve  lga base on id
       const lgaDocRef = doc(firestore, "states", employeeData.lga);
@@ -68,11 +76,11 @@ export const fetchEmployees = createAsyncThunk(
       const mdaDocSnap = await getDoc(mdaDocRef);
 
         employees.push({
-          id: doc.id,
-          ...doc.data(),
-          lga: lgaDocSnap.data(),
-          qualification: qualificationDocSnap.data(),
-          mda: mdaDocSnap.data()
+          id: docSnapshot.id,
+          ...docSnapshot.data(),
+          lga: lgaDocSnap.data().name,
+          qualification: qualificationDocSnap.data().title,
+          mda: mdaDocSnap.data().title
         });
     }
 

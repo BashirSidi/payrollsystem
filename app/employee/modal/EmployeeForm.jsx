@@ -20,7 +20,8 @@ import {
   useDispatch,
   useSelector,
 } from 'react-redux';
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
+import Loader from '../../components/Loader';
 import {
   fetchAllLga,
   fetchQualifications,
@@ -47,6 +48,7 @@ const EmployeeForm = (props) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
   const mda = useSelector((state) => state.mda);
+  const employee = useSelector((state) => state.employee);
 
   useEffect(() => {
     dispatch(fetchAllLga());
@@ -104,15 +106,21 @@ const EmployeeForm = (props) => {
         .string()
         .max(255),
     }),
-    onSubmit: async (values) => {
-      console.log('on employement form submit ', values)
-      dispatch(addEmployee(values));
+    onSubmit: async (values, { resetForm }) => {
+      dispatch(addEmployee(values)).then((res) => {
+        if (res.payload) {
+          resetForm();
+          props?.onClose()
+        }
+      });
     }
   });
 
+
   return (
     <>
-      <Modal
+      {employee.loading ? <Loader /> : <>
+        <Modal
         {...props}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -362,6 +370,7 @@ const EmployeeForm = (props) => {
           </Typography>
         </Box>
       </Modal>
+      </>}
     </>
   )
 }
