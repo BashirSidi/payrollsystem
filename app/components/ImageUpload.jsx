@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { 
   Box
 } from '@mui/material'
@@ -11,7 +12,7 @@ const ImageUpload = ({
     <Box>
       <label htmlFor="photo-upload" className="custom-file-upload fas">
         <div className="img-wrap img-upload" >
-          <img for="photo-upload" src={src}/>
+          <img alt='image upload' for="photo-upload" src={src}/>
         </div>
         <input id="photo-upload" type="file" onChange={onChange}/> 
       </label>

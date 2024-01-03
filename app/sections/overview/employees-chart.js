@@ -128,7 +128,7 @@ const options = {
 };
 
 export const OverviewSales = (props) => {
-  const { chartSeries, sx } = props;
+  const { sx } = props;
 
   return (
     <Card sx={sx}>
