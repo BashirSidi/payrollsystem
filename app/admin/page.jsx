@@ -6,7 +6,7 @@ import { Layout as DashboardLayout } from '../layouts/dashboard/layout';
 import Head from 'next/head';
 import { OverviewBudget, } from '../sections/overview/overview-budget'
 import { OverviewLatestOrders } from '../sections/overview/overview-latest-orders';
-import { OverviewSales } from '../sections/overview/overview-sales';
+import { OverviewSales } from '../sections/overview/employees-chart';
 import { OverviewTasksProgress } from '../sections/overview/overview-tasks-progress';
 import { OverviewTotalCustomers } from '../sections/overview/overview-total-customers';
 import { OverviewTotalProfit } from '../sections/overview/overview-total-profit';

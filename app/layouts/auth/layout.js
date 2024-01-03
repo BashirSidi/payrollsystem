@@ -13,7 +13,7 @@ export const Layout = (props) => {
     <Box
       component="main"
       sx={{
-        background: '#fcf6eb',
+        background: '#F5F5DC',
         display: 'flex',
         flex: '1 1 auto'
       }}
@@ -61,7 +61,7 @@ export const Layout = (props) => {
           lg={6}
           sx={{
             alignItems: 'center',
-            background: 'radial-gradient(40% 40% at 40% 40%, #83585c  0%, #3D0C11 100%)',
+            background: 'radial-gradient(40% 40% at 40% 40%, #92C79E  0%, #004225 100%)',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
