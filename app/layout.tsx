@@ -22,9 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ThemeRegistry children={undefined}>
+      <ThemeRegistry>
         <body className={inter.className}>
-          <ReduxProvider children={undefined}>
+          <ReduxProvider>
             <ToastContainer hideProgressBar />
             {children}
           </ReduxProvider>

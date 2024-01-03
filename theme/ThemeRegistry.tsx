@@ -5,13 +5,8 @@ import {
   ThemeOptions, 
   ThemeProvider
 } from "@mui/material/styles";
-import {
-  filledInputClasses,
-  inputLabelClasses,
-  outlinedInputClasses,
-  paperClasses,
-  tableCellClasses
-} from '@mui/material';
+
+
 import CssBaseline from "@mui/material/CssBaseline";
 import { NextAppDirEmotionCacheProvider } from "./EmotionCache";
 import { Poppins } from "next/font/google";
@@ -175,16 +170,17 @@ const themeOptions: ThemeOptions = {
 
 const theme = createTheme(themeOptions);
 
-export default function ThemeRegistry({children}){
+export default function ThemeRegistry({ children }) {
   return (
-    <NextAppDirEmotionCacheProvider options={{ key: "mui" }} children={""}>
+    <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {children}
       </ThemeProvider>
     </NextAppDirEmotionCacheProvider>
-  )
+  );
 }
+
 
 
 
