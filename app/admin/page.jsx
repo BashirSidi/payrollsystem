@@ -12,6 +12,7 @@ import { OverviewTotalCustomers } from '../sections/overview/overview-total-cust
 import { OverviewTotalProfit } from '../sections/overview/overview-total-profit';
 import React from 'react'
 import {data} from './mock';
+import withAuth from '../hocs/withAuth';
 
 const Page = () => (
   <DashboardLayout>
@@ -70,4 +71,4 @@ const Page = () => (
   </DashboardLayout>
 );
 
-export default Page;
+export default withAuth(Page);

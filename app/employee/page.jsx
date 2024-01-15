@@ -20,6 +20,7 @@ import { Scrollbar } from '../components/scrollbar';
 // import { SeverityPill } from '../components/severity-pill';
 import { fetchEmployees } from '../redux/features/employeeSlice/thunk';
 import EmployeeModalForm from './modal/EmployeeForm';
+import withAuth from '../hocs/withAuth';
 
 // const statusMap = {
 //   pending: 'warning',
@@ -135,4 +136,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default withAuth(Page);

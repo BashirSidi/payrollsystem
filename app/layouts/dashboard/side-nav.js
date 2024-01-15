@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import PropTypes from 'prop-types';
 import {
   Box,
+  ButtonBase,
   Divider,
   Drawer,
   Stack,
@@ -12,6 +13,7 @@ import Image from 'next/image';
 // import { Logo } from 'src/components/logo';
 import { Scrollbar } from '../../components/scrollbar';
 import { items } from './config';
+import { HiOutlineLogout } from "react-icons/hi";
 import { SideNavItem } from './side-nav-item';
 
 export const SideNav = (props) => {
@@ -112,7 +114,8 @@ export const SideNav = (props) => {
               const active = item.path ? (pathname === item.path) : false;
 
               return (
-                <SideNavItem
+                <>
+                  <SideNavItem
                   active={active}
                   disabled={item.disabled}
                   external={item.external}
@@ -121,9 +124,54 @@ export const SideNav = (props) => {
                   path={item.path}
                   title={item.title}
                 />
+                </>
               );
             })}
           </Stack>
+          <ButtonBase
+            sx={{
+              alignItems: 'center',
+              borderRadius: 1,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              mt: '5%',
+              pl: '16px',
+              pr: '16px',
+              py: '6px',
+              textAlign: 'left',
+              width: '100%',
+              color: '#F04438',
+              '&:hover': {
+                backgroundColor: '#ccc',
+                color: '#F04438',
+              }
+            }}
+          >
+              <Box
+                component="span"
+                sx={{
+                  alignItems: 'center',
+                  display: 'inline-flex',
+                  justifyContent: 'center',
+                  mr: 2,
+                }}
+              >
+                <HiOutlineLogout />
+              </Box>
+            <Box
+              component="span"
+              sx={{
+                flexGrow: 1,
+                fontFamily: (theme) => theme.typography.fontFamily,
+                fontSize: 14,
+                fontWeight: 600,
+                lineHeight: '24px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Logout
+            </Box>
+          </ButtonBase>
         </Box>
       </Box>
     </Scrollbar>
