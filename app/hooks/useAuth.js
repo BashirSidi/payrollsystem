@@ -1,37 +1,24 @@
-// utils/auth.js
-import { useState, useEffect } from 'react';
-import { auth } from '../firebase/config'; 
+// hooks/useAuth.js
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { setAuthenticated } from '../redux/features/authSlice';
 
 const useAuth = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { authenticated, loading, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const signIn = async (email, password) => {
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.error('Error signing in:', error.message);
+    if (!authenticated && !loading) {
+      router.push('/');
     }
-  };
+  }, [authenticated, loading, router]);
 
-  const signOut = async () => {
-    try {
-      await auth.signOut();
-    } catch (error) {
-      console.error('Error signing out:', error.message);
-    }
-  };
+  const isAuthenticated = () => authenticated;
+  const getUser = () => user;
 
-  return { user, loading, signIn, signOut };
+  return { isAuthenticated, getUser };
 };
 
-export { useAuth };
+export default useAuth;
