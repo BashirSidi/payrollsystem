@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
-// import { setAuthenticated } from '../redux/features/authSlice';
 
 const withAuth = (WrappedComponent) => {
   const Wrapper = (props) => {
@@ -10,8 +9,10 @@ const withAuth = (WrappedComponent) => {
     const { authenticated, loading } = useSelector((state) => state.auth);
 
     useEffect(() => {
-      if (!authenticated && !loading) {
-        router.push('/');
+      if (typeof window !== 'undefined') {
+        if (!authenticated && !loading) {
+          router.push('/');
+        }
       }
     }, [authenticated, loading, router]);
 

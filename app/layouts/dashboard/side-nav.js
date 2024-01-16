@@ -10,6 +10,10 @@ import {
   useMediaQuery
 } from '@mui/material';
 import Image from 'next/image';
+import {
+  useDispatch
+} from 'react-redux';
+import { logOut } from '../../redux/features/authSlice/thunk';
 // import { Logo } from 'src/components/logo';
 import { Scrollbar } from '../../components/scrollbar';
 import { items } from './config';
@@ -19,6 +23,7 @@ import { SideNavItem } from './side-nav-item';
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = usePathname();
+  const dispatch = useDispatch();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   const content = (
@@ -110,11 +115,11 @@ export const SideNav = (props) => {
               m: 0,
             }}
           >
-            {items.map((item) => {
+            {items.map((item, index) => {
               const active = item.path ? (pathname === item.path) : false;
 
               return (
-                <>
+                <div key={index}>
                   <SideNavItem
                   active={active}
                   disabled={item.disabled}
@@ -124,7 +129,7 @@ export const SideNav = (props) => {
                   path={item.path}
                   title={item.title}
                 />
-                </>
+                </div>
               );
             })}
           </Stack>
@@ -145,6 +150,9 @@ export const SideNav = (props) => {
                 backgroundColor: '#ccc',
                 color: '#F04438',
               }
+            }}
+            onClick={() => {
+              dispatch(logOut())
             }}
           >
               <Box
