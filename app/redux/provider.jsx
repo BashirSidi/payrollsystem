@@ -1,9 +1,16 @@
 "use client"
 
-import React from "react";
- import {store} from "./store";
- import { Provider } from "react-redux";
+import { wrapper } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { useStore } from 'react-redux';
 
- export function ReduxProvider({children} ) {
-  return <Provider store={store}>{children}</Provider>
- }
+const ReduxProvider = ({ Component, pageProps }) => {
+  const store = useStore();
+  return (
+    <PersistGate persistor={store.__persistor} loading={<div>Loading...</div>}>
+      <Component {...pageProps} />
+    </PersistGate>
+  );
+}
+
+export default wrapper.withRedux(ReduxProvider);

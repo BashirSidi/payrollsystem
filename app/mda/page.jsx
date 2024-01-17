@@ -15,6 +15,7 @@ import Head from 'next/head'
 import Loader from '../components/Loader'
 import { Scrollbar } from '../components/scrollbar';
 import { fetchAllMda } from '../redux/features/mdaSlice/thunk';
+import withAuth from '../hocs/withAuth';
 
 const columns = [
   {
@@ -88,4 +89,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default withAuth(Page);

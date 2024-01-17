@@ -3,20 +3,27 @@ import { usePathname } from 'next/navigation';
 import PropTypes from 'prop-types';
 import {
   Box,
+  ButtonBase,
   Divider,
   Drawer,
   Stack,
   useMediaQuery
 } from '@mui/material';
 import Image from 'next/image';
+import {
+  useDispatch
+} from 'react-redux';
+import { logOut } from '../../redux/features/authSlice/thunk';
 // import { Logo } from 'src/components/logo';
 import { Scrollbar } from '../../components/scrollbar';
 import { items } from './config';
+import { HiOutlineLogout } from "react-icons/hi";
 import { SideNavItem } from './side-nav-item';
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = usePathname();
+  const dispatch = useDispatch();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   const content = (
@@ -108,11 +115,12 @@ export const SideNav = (props) => {
               m: 0,
             }}
           >
-            {items.map((item) => {
+            {items.map((item, index) => {
               const active = item.path ? (pathname === item.path) : false;
 
               return (
-                <SideNavItem
+                <div key={index}>
+                  <SideNavItem
                   active={active}
                   disabled={item.disabled}
                   external={item.external}
@@ -121,9 +129,57 @@ export const SideNav = (props) => {
                   path={item.path}
                   title={item.title}
                 />
+                </div>
               );
             })}
           </Stack>
+          <ButtonBase
+            sx={{
+              alignItems: 'center',
+              borderRadius: 1,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              mt: '5%',
+              pl: '16px',
+              pr: '16px',
+              py: '6px',
+              textAlign: 'left',
+              width: '100%',
+              color: '#F04438',
+              '&:hover': {
+                backgroundColor: '#ccc',
+                color: '#F04438',
+              }
+            }}
+            onClick={() => {
+              dispatch(logOut())
+            }}
+          >
+              <Box
+                component="span"
+                sx={{
+                  alignItems: 'center',
+                  display: 'inline-flex',
+                  justifyContent: 'center',
+                  mr: 2,
+                }}
+              >
+                <HiOutlineLogout />
+              </Box>
+            <Box
+              component="span"
+              sx={{
+                flexGrow: 1,
+                fontFamily: (theme) => theme.typography.fontFamily,
+                fontSize: 14,
+                fontWeight: 600,
+                lineHeight: '24px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Logout
+            </Box>
+          </ButtonBase>
         </Box>
       </Box>
     </Scrollbar>
